@@ -7,7 +7,7 @@ class LLM:
             base_url="http://localhost:1234/v1",
             api_key="lm-studio",
         )
-        self.model = "IlyaGusev/saiga_mistral_7b_gguf"
+        self.model = "Qwen/Qwen2.5-14B-Instruct"
 
     def generate_response(self, query, docs_rel):
         request = (
