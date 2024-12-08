@@ -1,0 +1,10 @@
+pandas
+langchain
+chroma_database
+flask
+langchain_community
+langchain_huggingface
+numpy
+requests
+difflib
+transformers
