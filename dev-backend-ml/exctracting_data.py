@@ -5,7 +5,7 @@ from genetic_dishes import genetic_eat
 
 translator = Translator()
 vector_db = ChromaDatabase()
-file_path = '/Users/emildavlityarov/PycharmProjects/SafeShelf/recipes.json'
+file_path = './recipes.json'
 with open(file_path, 'r') as file:
     recipes = json.load(file)
 
