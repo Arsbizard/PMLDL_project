@@ -4,10 +4,10 @@ import pandas as pd
 from langchain.docstore.document import Document
 from chroma_database import ChromaDatabase
 
-# Read data from dataset
-file_path = '../dataset/ready_dataset.csv'
-df = pd.read_csv(file_path)
-df = df.head(40000)
+# # Read data from dataset
+# file_path = '../dataset/ready_dataset.csv'
+# df = pd.read_csv(file_path)
+# df = df.head(40000)
 
 
 def load_processed_data(vector_db=ChromaDatabase()):
