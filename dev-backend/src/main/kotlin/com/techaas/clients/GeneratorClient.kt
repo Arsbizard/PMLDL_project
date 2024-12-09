@@ -12,15 +12,18 @@ import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
 import org.springframework.web.reactive.function.client.bodyToMono
+import org.slf4j.LoggerFactory
 
 @Service
 @RequiredArgsConstructor
 class GeneratorClient(
     private val generatorDishesClient: WebClient
 ) {
-    suspend fun generateBreakfast(generateDishRequest: GenerateDishRequest): Dish =
-        print(BodyInserters.fromValue(generateDishRequest));
-        generatorDishesClient
+    private val logger = LoggerFactory.getLogger(GeneratorClient::class.java)
+
+    suspend fun generateBreakfast(generateDishRequest: GenerateDishRequest): Dish {
+        logger.info("Sending request for breakfast generation with body: {}", generateDishRequest)
+        return generatorDishesClient
             .post()
             .uri("/breakfast")
             .contentType(MediaType.APPLICATION_JSON)
@@ -31,10 +34,11 @@ class GeneratorClient(
             }) { throw GenerateDishException("ML server not found") }
             .bodyToMono<Dish>()
             .awaitSingle()
+    }
 
-
-    suspend fun generateLunch(generateDishRequest: GenerateDishRequest) =
-        generatorDishesClient
+    suspend fun generateLunch(generateDishRequest: GenerateDishRequest): Dish {
+        logger.info("Sending request for lunch generation with body: {}", generateDishRequest)
+        return generatorDishesClient
             .post()
             .uri("/lunch")
             .contentType(MediaType.APPLICATION_JSON)
@@ -45,9 +49,11 @@ class GeneratorClient(
             }) { throw GenerateDishException("ML server not found") }
             .bodyToMono<Dish>()
             .awaitSingle()
+    }
 
-    suspend fun generateDinner(generateDishRequest: GenerateDishRequest) =
-        generatorDishesClient
+    suspend fun generateDinner(generateDishRequest: GenerateDishRequest): Dish {
+        logger.info("Sending request for dinner generation with body: {}", generateDishRequest)
+        return generatorDishesClient
             .post()
             .uri("/dinner")
             .contentType(MediaType.APPLICATION_JSON)
@@ -58,5 +64,5 @@ class GeneratorClient(
             }) { throw GenerateDishException("ML server not found") }
             .bodyToMono<Dish>()
             .awaitSingle()
-
+    }
 }
