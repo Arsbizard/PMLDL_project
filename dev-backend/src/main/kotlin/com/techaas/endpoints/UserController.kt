@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/account")
+@CrossOrigin(
+    origins = ["*"],           // Allow all origins
+    allowedHeaders = ["*"],    // Allow all headers
+    methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT], // Allow specific HTTP methods
+    maxAge = 3600              // Cache preflight response for 1 hour
+)
 class UserController(
     private val accountService: AccountService,
 ) {
