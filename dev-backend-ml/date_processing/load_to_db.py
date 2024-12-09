@@ -13,30 +13,30 @@ from chroma_database import ChromaDatabase
 def load_processed_data(vector_db=ChromaDatabase()):
     documents_with_metadata = []
 
-    recipes = {}
-    for _, row in df.iterrows():
-        recipes[row['title']] = {
-            'directions': row['directions'],
-            'ingredients': row['ingredients'],
-            'NER': row['NER']
-        }
-
-    recipes_json = json.dumps(recipes, ensure_ascii=False, indent=4)
-
-    with open('../recipes.json', 'w', encoding='utf-8') as file:
-        file.write(recipes_json)
+    # recipes = {}
+    # for _, row in df.iterrows():
+    #     recipes[row['title']] = {
+    #         'directions': row['directions'],
+    #         'ingredients': row['ingredients'],
+    #         'NER': row['NER']
+    #     }
+    #
+    # recipes_json = json.dumps(recipes, ensure_ascii=False, indent=4)
+    #
+    # with open('../recipes.json', 'w', encoding='utf-8') as file:
+    #     file.write(recipes_json)
 
     with open('../recipes.json', 'r', encoding='utf-8') as file:
         recipes = json.load(file)
 
-    for title, data in recipes.items():
-        content = data['NER']
-        doc = Document(content)
-        doc.metadata['recipe_title'] = title
-        documents_with_metadata.append(doc)
+        for title, data in recipes.items():
+            content = data['NER']
+            doc = Document(content)
+            doc.metadata['recipe_title'] = title
+            documents_with_metadata.append(doc)
 
-    # Add documents to vector database
-    vector_db.add_documents(documents_with_metadata)
+        # Add documents to vector database
+        vector_db.add_documents(documents_with_metadata)
 
     # def split_list(input_list, chunk_size):
     #     for i in range(0, len(input_list), chunk_size):
