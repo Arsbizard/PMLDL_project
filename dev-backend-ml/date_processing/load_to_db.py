@@ -26,7 +26,7 @@ def load_processed_data(vector_db=ChromaDatabase()):
     # with open('../recipes.json', 'w', encoding='utf-8') as file:
     #     file.write(recipes_json)
 
-    with open('../recipes.json', 'r', encoding='utf-8') as file:
+    with open('recipes.json', 'r', encoding='utf-8') as file:
         recipes = json.load(file)
 
         for title, data in recipes.items():
