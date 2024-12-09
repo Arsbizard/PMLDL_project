@@ -42,7 +42,7 @@ services:
   back:
     build: ./dev-backend
     ports: 
-      - "8081:8000"
+      - "8082:8000"
     container_name: back
     restart: unless-stopped
 
@@ -54,6 +54,7 @@ services:
       POSTGRES_DB: "safeshelf"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
+    container_name: postgres
     volumes:
       - postgresql:/var/lib/postgresql/data
 
@@ -77,6 +78,7 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    container_name: mongodb
 
 volumes:
   index_data:
