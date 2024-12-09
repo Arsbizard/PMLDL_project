@@ -19,7 +19,7 @@ class GeneratorClient(
     private val generatorDishesClient: WebClient
 ) {
     suspend fun generateBreakfast(generateDishRequest: GenerateDishRequest): Dish =
-        System.out.println(BodyInserters.fromValue(generateDishRequest))
+        System.out.println(BodyInserters.fromValue(generateDishRequest));
         generatorDishesClient
             .post()
             .uri("/breakfast")
