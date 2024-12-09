@@ -15,7 +15,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
@@ -55,7 +55,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.34")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
     implementation("org.postgresql:postgresql")
-    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.111:osx-x86_64")
+    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.111.Final:osx-x86_64")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.3")
     implementation("org.liquibase:liquibase-core:4.8.0")
     runtimeOnly("org.postgresql:postgresql")

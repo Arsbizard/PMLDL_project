@@ -29,7 +29,7 @@ server:
 
 clients:
   generator-dishes:
-    base-url: http://localhost:8001
+    base-url: http://back-ml:8081
 
 
 springdoc:
@@ -40,4 +40,9 @@ jwt:
   key: iZRaS9EQ0Gl2KdX8MQcy8Wy69x8CnvZneoZ2bVxd5291tQGa0jGRkWgFs99zZBjJ9ENM4k1XOYKw2bS3q1lLkjQ5MpGqAtD9ofhSGD6ytSnERSMyG8G
   access-token-expiration: 3600000
   refresh-token-expiration: 86400000
+
+links:
+  checkToken: 27538.Lx5eYhSX3b99Hzd04
+  checkUrl: https://proverkacheka.com/api/v1/check/get
+  checkDate: https://mobile.api.crpt.ru/mobile/check
 

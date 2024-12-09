@@ -2,10 +2,12 @@ package com.techaas.services
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.techaas.configuration.LinksConfig
 import com.techaas.dto.ProductWithDate
 import com.techaas.dto.ProductWithoutWeight
 import com.techaas.dto.requests.DecodeReceiptRequest
 import io.github.cdimascio.dotenv.Dotenv
+import lombok.RequiredArgsConstructor
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -21,20 +23,16 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Component
-class QrAnalyzerService {
-    final val dotenv = Dotenv.configure().directory(File(".").toString()).load()
-    val token = dotenv["CHECK_TOKEN"]
-    val url = dotenv["CHECK_URL"]
-    val date_url = dotenv["CHECK_DATE"]
-
-    val client = OkHttpClient().newBuilder()
-        .build()
+class QrAnalyzerService(
+    private val linksConfig: LinksConfig // Injected using Spring
+) {
+    private val client = OkHttpClient().newBuilder().build()
 
     companion object {
-        private var products: List<ProductWithoutWeight>
+        private lateinit var products: List<ProductWithoutWeight>
 
         init {
-            val jsonFile = File("products.json")
+            val jsonFile = File("dev-backend/src/main/resources/products.json")
             val jsonString = jsonFile.readText()
             val gson = Gson()
             val productListType = object : TypeToken<List<ProductWithoutWeight>>() {}.type
@@ -47,15 +45,15 @@ class QrAnalyzerService {
         }
     }
 
-    fun getReceipt(@RequestBody decodeReceiptRequest: DecodeReceiptRequest): List<ProductWithDate> {
+    fun getReceipt(decodeReceiptRequest: DecodeReceiptRequest): List<ProductWithDate> {
         val rawReceiptId = decodeReceiptRequest.rawReceiptId
         val formBody = FormBody.Builder()
             .add("qrraw", rawReceiptId)
-            .add("token", token)
+            .add("token", linksConfig.checkToken) // Use LinksConfig
             .build()
 
         val request = Request.Builder()
-            .url(url)
+            .url(linksConfig.checkUrl) // Use LinksConfig
             .post(formBody)
             .addHeader("Cookie", "ENGID=1.1")
             .build()
@@ -64,14 +62,12 @@ class QrAnalyzerService {
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val responseBody = response.body?.string()
-        val filteredResponse = filterJson(responseBody)
-        return filteredResponse
+        return filterJson(responseBody)
     }
 
     fun getDate(rawProductCode: String): LocalDate? {
-
         val request = Request.Builder()
-            .url("$date_url?code=$rawProductCode")
+            .url("${linksConfig.checkDate}?code=$rawProductCode") // Use LinksConfig
             .get()
             .build()
 
