@@ -8,7 +8,7 @@ spring:
   liquibase:
     enabled: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/safeshelf
+    url: jdbc:postgresql://postgres:5432/safeshelf
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -20,7 +20,7 @@ spring:
       ddl-auto: none
   data:
     mongodb:
-      uri: mongodb://localhost:27017/dishes
+      uri: mongodb://mongodb:27017/dishes
 
 
 server:
