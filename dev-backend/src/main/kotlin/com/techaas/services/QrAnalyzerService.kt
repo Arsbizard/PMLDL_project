@@ -32,7 +32,7 @@ class QrAnalyzerService(
         private lateinit var products: List<ProductWithoutWeight>
 
         init {
-            val jsonFile = File("/app/src/main/resources/products.json")
+            val jsonFile = File("/app/resources/products.json")
             val jsonString = jsonFile.readText()
             val gson = Gson()
             val productListType = object : TypeToken<List<ProductWithoutWeight>>() {}.type
