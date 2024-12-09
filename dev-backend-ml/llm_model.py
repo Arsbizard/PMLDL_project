@@ -15,6 +15,7 @@ class LLM:
             f'written in first sentence.')
         print(prompt)
         data = {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
           "prompt": prompt,
           "temperature": 0.3,
           "top_k":35,  
