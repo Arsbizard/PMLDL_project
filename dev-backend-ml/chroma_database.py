@@ -6,7 +6,7 @@ import os
 
 class ChromaDatabase:
     def __init__(self, port: int = 8000, collection_name: str = "recipes"):
-        self.host = os.getenv("CHROMA_URL", default="localhost")
+        self.host = os.getenv("CHROMA_URL", default="chroma")
         self.port = port
         self.collection_name = collection_name
         self.chroma_client = chromadb.HttpClient(host=self.host, port=self.port)

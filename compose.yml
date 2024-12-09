@@ -1,0 +1,51 @@
+services:
+  vllm:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: 1
+    container_name: vllm
+    volumes:
+      - '~/.cache/huggingface:/root/.cache/huggingface'
+    env_file: vllm.env
+    restart: unless-stopped
+    ports:
+      - '8011:8000'
+    image: vllm/vllm-openai:latest
+    command: --model Qwen/Qwen2.5-7B-Instruct --port 8000     --max-num-batched-tokens 8192     --max-num-seqs 100     --dtype auto     --trust-remote-code     --gpu_memory_utilization 0.9     --max-model-len 8192
+  
+  back-ml:
+    build: ./dev-backend-ml
+    ports: 
+      - "8081:8000"
+    container_name: back-ml
+    restart: unless-stopped
+
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    volumes:
+      - index_data:/chroma/.chroma/index
+    ports:
+      - "8000:8000"
+    container_name: chroma
+  
+  front:
+    build: ./dev-frontend
+    ports: 
+      - "3000:80"
+    container_name: front
+    restart: unless-stopped
+
+  back:
+    build: ./dev-backend
+    ports: 
+      - "8081:8000"
+    container_name: back
+    restart: unless-stopped
+
+volumes:
+  index_data:
+     driver: local
