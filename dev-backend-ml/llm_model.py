@@ -3,7 +3,7 @@ import json
 
 class LLM:
     def __init__(self):
-        self.url = "http://192.168.3.5:8011/generate"
+        self.url = "http://192.168.3.5:8011/v1/completions"
 
     def generate_response(self, query, docs_rel):
         prompt = (
