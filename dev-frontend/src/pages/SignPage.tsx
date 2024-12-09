@@ -151,7 +151,7 @@ const SignPage = () => {
                 throw new Error("ERROR WHILE INPUT AGE");
             }
 
-            const sending = await fetch("/account/register", {
+            const sending = await fetch("http://back:8082/account/register", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
