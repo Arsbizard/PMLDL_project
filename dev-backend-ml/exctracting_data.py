@@ -4,13 +4,12 @@ from chroma_database import ChromaDatabase
 from genetic_dishes import genetic_eat
 
 translator = Translator()
-vector_db = ChromaDatabase()
 file_path = './recipes.json'
 with open(file_path, 'r') as file:
     recipes = json.load(file)
 
 
-def extract_data(data, type_dish):
+def extract_data(data, type_dish, vector_db):
     updated_data = translator.process_and_translate(data)
     kpfc = updated_data['kpfc']
     products = updated_data['productToGenerators']
