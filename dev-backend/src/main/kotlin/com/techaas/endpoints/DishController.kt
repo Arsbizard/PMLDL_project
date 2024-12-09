@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/dish")
 @RequiredArgsConstructor
+@CrossOrigin(
+    origins = ["*"],           // Allow all origins
+    allowedHeaders = ["*"],    // Allow all headers
+    methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE], // Allow specific HTTP methods
+    maxAge = 3600              // Cache preflight response for 1 hour
+)
 class DishController(
     private val dishService: DishService,
     private val generatorClient: GeneratorClient

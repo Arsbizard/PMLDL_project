@@ -29,7 +29,7 @@ server:
 
 clients:
   generator-dishes:
-    base-url: http://back-ml:8081
+    base-url: http://192.168.3.5:8081
 
 
 springdoc:

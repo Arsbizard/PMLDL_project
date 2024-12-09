@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(
+    origins = ["*"],           // Allow all origins
+    allowedHeaders = ["*"],    // Allow all headers
+    methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE], // Allow specific HTTP methods
+    maxAge = 3600              // Cache preflight response for 1 hour
+)
 class ProductController(
     private val productService: ProductService
 ) {
