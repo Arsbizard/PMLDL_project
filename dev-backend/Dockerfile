@@ -1,4 +1,4 @@
-FROM gradle:8.5-jdk21-alpine as builder
+FROM gradle:8.5-jdk17-alpine as builder
 USER root
 WORKDIR /builder
 COPY . /builder
