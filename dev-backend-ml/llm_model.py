@@ -20,7 +20,9 @@ class LLM:
           "temperature": 0.3,
           "top_k":35,  
           "top_p": 0.9,
-          "max_tokens": 2048
+          "max_tokens": 2048,
+          "frequency_penalty": 0.5,
+          "repetition_penalty": 0.6
         }
         headers = {"Content-Type": "application/json"}
         print(f"Request was sent to {self.url} with data {json.dumps(data)} and headers {headers}")

@@ -42,7 +42,7 @@ services:
   back:
     build: ./dev-backend
     ports: 
-      - "8082:8000"
+      - "8082:8080"
     container_name: back
     restart: unless-stopped
 

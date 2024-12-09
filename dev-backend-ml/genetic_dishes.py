@@ -106,7 +106,7 @@ def genetic_algorithm(products, pop_size, iterations, sample_size, kpfc):
 
 
 def genetic_eat(products, a):
-    best_pa = genetic_algorithm(products, 30, 100, 8, a)
+    best_pa = genetic_algorithm(products, 30, 100, 4, a)
     products_for_a = []
     for i in range(len(best_pa)):
         products_for_a.append({'name': best_pa[i]['name'], 'weight': best_pa[i]['weight']})
