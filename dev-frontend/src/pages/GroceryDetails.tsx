@@ -44,7 +44,7 @@ const GroceryDetails: FC<{ setMenuVisible: (visible: boolean) => void }> = ({set
             }
 
             // console.log(dateToDelete)
-            const currResponse = await fetch(`/product/delete`, {
+            const currResponse = await fetch(`http://192.168.3.5:8082/product/delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ const GroceryDetails: FC<{ setMenuVisible: (visible: boolean) => void }> = ({set
                 date
             }
 
-            const currResponse = await fetch(`/product/update`, {
+            const currResponse = await fetch(`http://192.168.3.5:8082/product/update`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

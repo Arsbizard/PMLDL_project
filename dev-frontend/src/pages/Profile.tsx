@@ -59,7 +59,7 @@ const Profile: FC<{ setMenuVisible: (visible: boolean) => void }> = ({setMenuVis
                 if (!userLogin) {
                     userLogin = "";
                 }
-                const currResponse = await fetch(`/account/${userLogin.toString()}`);
+                const currResponse = await fetch(`http://192.168.3.5:8082/account/${userLogin.toString()}`);
                 const data: ProfileData = await currResponse.json();
                 // setProfileData(data);
                 setCurrentMail(data.login)
@@ -214,7 +214,7 @@ const Profile: FC<{ setMenuVisible: (visible: boolean) => void }> = ({setMenuVis
                 ageInput.value = '';
                 throw new Error("ERROR WHILE INPUT AGE");
             }
-            const currResponse = await fetch("/account", {
+            const currResponse = await fetch("http://192.168.3.5:8082/account", {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

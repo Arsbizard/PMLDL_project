@@ -20,7 +20,7 @@ const LoginPage: FC<LoginPageProps> = ({onChange, setResponse}) => {
             if (login === '' || password === '') {
                 throw new Error('Incorrect input: fill all fields!');
             }
-            const sending = await fetch('/account/login', {
+            const sending = await fetch('http://192.168.3.5:8082/account/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

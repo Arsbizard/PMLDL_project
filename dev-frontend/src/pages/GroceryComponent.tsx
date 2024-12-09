@@ -27,7 +27,7 @@ const CardContainer = () => {
                 const login = sessionStorage.getItem('userLogin');
 
                 // TODO: FIX ENDPOINTS
-                const currResponse = await fetch(`/product/${login}`)
+                const currResponse = await fetch(`http://192.168.3.5:8082/product/${login}`)
                 const currStatus = currResponse.status;
                 if (currStatus === 200) {
                     const data: GroceryContainerProps["groceries"] = await currResponse.json();

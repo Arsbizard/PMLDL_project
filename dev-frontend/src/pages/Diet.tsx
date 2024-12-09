@@ -14,7 +14,7 @@ const Diet: FC<{ setMenuVisible: (visible: boolean) => void }> = ({ setMenuVisib
             try {
                 setLoading(true); // Set loading to true before starting fetch
                 const login = sessionStorage.getItem('userLogin');
-                const currResponse = await fetch(`/dish/${login}`);
+                const currResponse = await fetch(`http://192.168.3.5:8082/dish/${login}`);
                 const currStatus = currResponse.status;
                 if (currStatus === 200) {
                     const data: DietInterface["dishes"] = await currResponse.json();
@@ -35,7 +35,7 @@ const Diet: FC<{ setMenuVisible: (visible: boolean) => void }> = ({ setMenuVisib
         try {
             setLoading(true); // Set loading to true before starting regeneration
             const login = sessionStorage.getItem('userLogin');
-            const currResponse = await fetch(`/dish/${stateName}/${login}`, {
+            const currResponse = await fetch(`http://192.168.3.5:8082/dish/${stateName}/${login}`, {
                 method: 'POST'
             });
             const currStatus = currResponse.status;

@@ -32,7 +32,7 @@ const DietDetails: FC<{ setMenuVisible: (visible: boolean) => void }> = ({setMen
                 id
             }
 
-            const currResponse = await fetch(`/dish/cooked`, {
+            const currResponse = await fetch(`http://192.168.3.5:8082/dish/cooked`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const DietDetails: FC<{ setMenuVisible: (visible: boolean) => void }> = ({setMen
                 cState = 'lunch'
             }
 
-            const currResponse = await fetch(`/dish/${cState}/${login}`, {
+            const currResponse = await fetch(`http://192.168.3.5:8082/dish/${cState}/${login}`, {
                 method: 'DELETE'
             });
 
