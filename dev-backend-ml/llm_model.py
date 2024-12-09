@@ -22,6 +22,7 @@ class LLM:
           "max_tokens": 2048
         }
         headers = {"Content-Type": "application/json"}
+        print(f"Request was sent to {self.url} with data {json.dumps(data)} and headers {headers})
         response = requests.post(self.url, data=json.dumps(data), headers = headers)
 
         return response.json()["text"][0]
